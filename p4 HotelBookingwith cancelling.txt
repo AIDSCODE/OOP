@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+class HotelBooking
+{
+public static void main(String[] args)
+{
+Scanner sc = new Scanner(System.in);
+
+int rooms[][] = new int[3][3];
+int choice;
+
+do
+{
+System.out.println("\n===== HOTEL ROOM BOOKING SYSTEM =====");
+System.out.println("1. View Rooms");
+System.out.println("2. Book Room");
+System.out.println("3. Cancel Booking");
+System.out.println("4. Exit");
+
+System.out.print("Enter Your Choice: ");
+choice = sc.nextInt();
+
+switch(choice)
+{
+
+case 1:
+System.out.println("\nRoom Status");
+
+for(int i = 0; i < rooms.length; i++)
+{
+System.out.println("\nFloor " + (i + 1));
+
+for(int j = 0; j < rooms[i].length; j++)
+{
+if(rooms[i][j] == 0)
+System.out.println("Room " + (j + 1) + " : Available");
+else
+System.out.println("Room " + (j + 1) + " : Booked");
+}
+}
+break;
+
+case 2:
+System.out.print("\nEnter Floor Number (1-3): ");
+int floor = sc.nextInt();
+
+System.out.print("Enter Room Number (1-3): ");
+int room = sc.nextInt();
+
+if(rooms[floor - 1][room - 1] == 0)
+{
+rooms[floor - 1][room - 1] = 1;
+System.out.println("\nRoom Booked Successfully");
+}
+else
+{
+System.out.println("\nRoom Already Booked");
+}
+break;
+
+case 3:
+System.out.print("\nEnter Floor Number (1-3): ");
+int cancelFloor = sc.nextInt();
+
+System.out.print("Enter Room Number (1-3): ");
+int cancelRoom = sc.nextInt();
+
+if(rooms[cancelFloor - 1][cancelRoom - 1] == 1)
+{
+rooms[cancelFloor - 1][cancelRoom - 1] = 0;
+System.out.println("\nBooking Cancelled Successfully");
+}
+else
+{
+System.out.println("\nRoom Is Already Available");
+}
+break;
+
+case 4:
+System.out.println("\nThank You For Using Hotel Booking System!");
+break;
+
+default:
+System.out.println("\nInvalid Choice");
+}
+
+} while(choice != 4);
+
+sc.close();
+}
+}
